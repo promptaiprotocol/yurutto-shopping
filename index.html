@@ -4,64 +4,36 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f8efe4">
-<meta name="description" content="献立の買い出しを、ゆるっとラクに。よく買う食材と献立テンプレートから作れる買い物リスト。">
+<meta name="description" content="献立の買い出しを、ゆるっとラクに。お気に入り・カテゴリ追加・初心者レシピ付きの買い物リスト。">
 <title>ゆるっと買い物</title>
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
 <style>
-:root{--bg:#f8efe4;--paper:#fffdf9;--ink:#514941;--muted:#8d8178;--line:#eadccf;--mint:#d9eee3;--peach:#f6ddd4;--yellow:#f7e9b9;--shadow:0 12px 34px rgba(90,65,45,.08)}
-*{box-sizing:border-box}body{margin:0;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;background:radial-gradient(circle at 8% 0%,#fff 0,transparent 30%),var(--bg);min-height:100vh}button,input{font:inherit}button{color:inherit;cursor:pointer}
-.wrap{width:min(860px,100%);margin:auto;padding:18px 14px 72px}header{text-align:center;padding:10px 0 14px}.series{display:inline-flex;padding:7px 14px;background:#ffffff99;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-weight:700;font-size:13px}h1{font-size:clamp(32px,8vw,48px);margin:12px 0 4px}.subtitle{margin:0;color:var(--muted);line-height:1.65;font-size:14px}
+:root{--bg:#f8efe4;--paper:#fffdf9;--ink:#514941;--muted:#8d8178;--line:#eadccf;--mint:#d9eee3;--peach:#f6ddd4;--yellow:#f7e9b9;--lav:#e8dff2;--blue:#dcecf3;--shadow:0 12px 34px rgba(90,65,45,.08)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;background:radial-gradient(circle at 8% 0%,#fff 0,transparent 30%),var(--bg);min-height:100vh}button,input,select,textarea{font:inherit}button{color:inherit;cursor:pointer}
+.wrap{width:min(900px,100%);margin:auto;padding:18px 14px 72px}header{text-align:center;padding:10px 0 14px}.series{display:inline-flex;padding:7px 14px;background:#ffffff99;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-weight:700;font-size:13px}h1{font-size:clamp(32px,8vw,48px);margin:12px 0 4px}.subtitle{margin:0;color:var(--muted);line-height:1.65;font-size:14px}.header-tools{display:flex;justify-content:center;gap:8px;margin-top:12px}.helpbtn{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:800}
 .hero{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:16px}.hero button{border:1px solid var(--line);border-radius:20px;padding:14px 7px;background:#fff;min-height:86px;font-weight:800}.hero small{display:block;font-size:11px;color:var(--muted);margin-top:5px}.hero button:nth-child(1){background:linear-gradient(135deg,var(--mint),#fff)}.hero button:nth-child(2){background:linear-gradient(135deg,var(--peach),#fff)}.hero button:nth-child(3){background:linear-gradient(135deg,var(--yellow),#fff)}
-.card{background:#fffdf9ef;border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:17px;margin:14px 0}.head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.head h2{margin:0;font-size:19px}.sub{font-size:12px;color:var(--muted)}
+.card{background:#fffdf9ef;border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:17px;margin:14px 0}.head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.head h2{margin:0;font-size:19px}.sub{font-size:12px;color:var(--muted);line-height:1.65}
 .tools{display:flex;gap:6px;flex-wrap:wrap}.tool{border:1px solid var(--line);background:#fff;border-radius:12px;padding:8px 9px;font-size:12px;font-weight:700}.tool.active{background:var(--mint)}
-.list{display:grid;gap:8px}.item{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;border:1px solid var(--line);border-radius:16px;padding:11px;background:#fff}.item.done{opacity:.5}.item.done .name{text-decoration:line-through}.check{width:31px;height:31px;border:1px solid #d9cec4;border-radius:10px;background:#fff;font-weight:900}.item.done .check{background:var(--mint)}.name{font-weight:800}.meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}.chip{font-size:10px;padding:3px 7px;border-radius:999px;background:#f2eee9;color:var(--muted)}.memo-chip{background:var(--yellow)}.acts{display:flex}.icon{border:0;background:transparent;padding:5px;font-size:17px}.empty{text-align:center;color:var(--muted);padding:28px 8px;line-height:1.7}
-.addrow{display:flex;gap:8px;margin-top:10px}.input{width:100%;min-width:0;border:1px solid var(--line);border-radius:14px;background:#fff;padding:11px 12px;color:var(--ink);outline:none}.add{border:0;border-radius:14px;padding:11px 14px;background:var(--mint);font-weight:850;white-space:nowrap}
-.quickrow{display:flex;gap:7px;overflow:auto;padding-bottom:3px}.quick{border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 12px;white-space:nowrap;font-weight:700;font-size:13px}
-.layout{display:grid;grid-template-columns:1fr 1.15fr;gap:14px;align-items:start}.catgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.cat{border:1px solid var(--line);border-radius:18px;background:#fff;padding:12px 7px;min-height:80px;font-weight:800}.cat .emoji{font-size:25px;display:block;margin-bottom:5px}.cat small{display:block;color:var(--muted);font-size:10px;margin-top:3px}.menugrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.menu{border:1px solid var(--line);border-radius:15px;background:#fff;padding:11px 10px;text-align:left;font-weight:750}
-.panel{display:none;margin-top:12px;border-top:1px dashed var(--line);padding-top:12px}.panel.show{display:block}.search{margin-bottom:10px}.ingrid{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}.ing{display:flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid var(--line);border-radius:13px;background:#fff;padding:9px 10px}.ing .n{border:0;background:transparent;text-align:left;flex:1;padding:0;font-size:13px;font-weight:750}.star{border:0;background:transparent;font-size:18px}
-dialog{width:min(560px,calc(100% - 22px));border:0;border-radius:24px;padding:0;background:var(--paper);color:var(--ink);box-shadow:0 30px 90px rgba(55,40,30,.24)}dialog::backdrop{background:rgba(60,45,35,.28);backdrop-filter:blur(4px)}.dinner{padding:19px}.dhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.dhead h3{margin:0}.x{border:0;border-radius:50%;width:34px;height:34px;background:#f3ede7}.dacts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}.ghost,.primary{border:0;border-radius:14px;padding:11px;font-weight:800}.ghost{background:#f2ece6}.primary{background:var(--mint)}
-.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;background:#514941;color:#fff;padding:10px 15px;border-radius:999px;font-size:13px;font-weight:700;transition:.2s;z-index:20}.toast.show{opacity:1;transform:translate(-50%,0)}.footer{text-align:center;color:var(--muted);font-size:12px;line-height:1.8;padding:12px}
-@media(max-width:720px){.layout{grid-template-columns:1fr}}@media(max-width:560px){.wrap{padding:12px 10px 64px}.hero button{font-size:13px;padding:12px 4px}.catgrid{grid-template-columns:repeat(3,1fr)}.cat{font-size:12px;min-height:76px}.card{padding:14px;border-radius:20px}.ingrid{grid-template-columns:1fr 1fr}}
-
-/* v2: mobile layout fix */
-#listSec > .head > div:first-child{
-  min-width:0;
+.list{display:grid;gap:8px}.item{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;border:1px solid var(--line);border-radius:16px;padding:11px;background:#fff}.item.done{opacity:.5}.item.done .name{text-decoration:line-through}.check{width:31px;height:31px;border:1px solid #d9cec4;border-radius:10px;background:#fff;font-weight:900}.item.done .check{background:var(--mint)}.name{font-weight:800;word-break:break-word}.meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}.chip{font-size:10px;padding:3px 7px;border-radius:999px;background:#f2eee9;color:var(--muted)}.memo-chip{background:var(--yellow)}.acts{display:flex;gap:1px}.icon{border:0;background:transparent;padding:5px;font-size:17px}.empty{text-align:center;color:var(--muted);padding:28px 8px;line-height:1.7}
+.addrow{display:flex;gap:8px;margin-top:10px}.input,.select,.textarea{width:100%;min-width:0;border:1px solid var(--line);border-radius:14px;background:#fff;padding:11px 12px;color:var(--ink);outline:none}.textarea{resize:vertical}.add{border:0;border-radius:14px;padding:11px 14px;background:var(--mint);font-weight:850;white-space:nowrap}.free-options{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;margin-top:8px}.fav-check{display:flex;align-items:center;gap:6px;white-space:nowrap;font-size:12px;font-weight:750;color:#6e6259}.fav-check input{accent-color:#d4b75f}
+.quickrow{display:flex;gap:7px;overflow:auto;padding-bottom:3px;scrollbar-width:none}.quickrow::-webkit-scrollbar{display:none}.quick{border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 12px;white-space:nowrap;font-weight:700;font-size:13px}
+.layout{display:grid;grid-template-columns:1fr 1.15fr;gap:14px;align-items:start}.catgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.cat{border:1px solid var(--line);border-radius:18px;background:#fff;padding:12px 7px;min-height:80px;font-weight:800}.cat .emoji{font-size:25px;display:block;margin-bottom:5px}.cat small{display:block;color:var(--muted);font-size:10px;margin-top:3px}
+.menugrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.menu-card{border:1px solid var(--line);border-radius:16px;background:#fff;padding:10px}.menu-title{font-weight:800;margin-bottom:8px}.menu-actions{display:grid;grid-template-columns:1fr 1fr;gap:6px}.menu-action{border:0;border-radius:10px;padding:8px 5px;font-size:11px;font-weight:800}.menu-add{background:var(--mint)}.menu-recipe{background:var(--peach)}
+.panel{display:none;margin-top:12px;border-top:1px dashed var(--line);padding-top:12px}.panel.show{display:block}.search{margin-bottom:10px}.ingrid{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}.ing{display:flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid var(--line);border-radius:13px;background:#fff;padding:9px 10px}.ing .n{border:0;background:transparent;text-align:left;flex:1;padding:0;font-size:13px;font-weight:750}.star{border:0;background:transparent;font-size:18px}.custom-note{grid-column:1/-1;text-align:center;color:var(--muted);font-size:12px;padding:12px}
+dialog{width:min(620px,calc(100% - 22px));border:0;border-radius:24px;padding:0;background:var(--paper);color:var(--ink);box-shadow:0 30px 90px rgba(55,40,30,.24)}dialog::backdrop{background:rgba(60,45,35,.28);backdrop-filter:blur(4px)}.dinner{padding:19px}.dhead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}.dhead h3{margin:0}.x{border:0;border-radius:50%;width:34px;height:34px;background:#f3ede7}.dacts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}.ghost,.primary{border:0;border-radius:14px;padding:11px;font-weight:800}.ghost{background:#f2ece6}.primary{background:var(--mint)}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field label{display:block;font-size:11px;color:var(--muted);font-weight:750;margin:0 0 5px 3px}.field.full{grid-column:1/-1}
+.custom-list{display:grid;gap:7px;margin:10px 0}.custom-row{display:grid;grid-template-columns:1fr auto auto;gap:6px;align-items:center;border:1px solid var(--line);background:#fff;border-radius:12px;padding:8px 9px}.smallbtn{border:1px solid var(--line);background:#fff;border-radius:10px;padding:7px 8px;font-size:11px;font-weight:750}.danger{color:#a46666}
+.recipe-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}.recipe-badge{font-size:11px;background:#f2eee9;padding:5px 8px;border-radius:999px}.servings{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:10px 0}.serving-btn{border:1px solid var(--line);background:#fff;border-radius:12px;padding:9px;font-weight:800}.serving-btn.active{background:var(--yellow)}
+.recipe-cols{display:grid;grid-template-columns:1fr 1.2fr;gap:12px}.recipe-box{border:1px solid var(--line);border-radius:15px;background:#fff;padding:12px}.recipe-box h4{margin:0 0 8px}.recipe-box ul,.recipe-box ol{margin:0;padding-left:20px;line-height:1.75;font-size:13px}.recipe-tip{margin-top:10px;background:linear-gradient(135deg,var(--yellow),#fff);padding:10px 11px;border-radius:13px;font-size:12px;line-height:1.65}
+.guide-list{display:grid;gap:9px}.guide-step{display:grid;grid-template-columns:36px 1fr;gap:10px;align-items:start;border:1px solid var(--line);background:#fff;border-radius:14px;padding:10px}.guide-num{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--mint);font-weight:900}.guide-step b{display:block;margin-bottom:3px}.guide-step p{margin:0;color:var(--muted);font-size:12px;line-height:1.65}
+.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;background:#514941;color:#fff;padding:10px 15px;border-radius:999px;font-size:13px;font-weight:700;transition:.2s;z-index:20;max-width:calc(100% - 28px);text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}.footer{text-align:center;color:var(--muted);font-size:12px;line-height:1.8;padding:12px}
+@media(max-width:720px){.layout{grid-template-columns:1fr}.recipe-cols{grid-template-columns:1fr}}
+@media(max-width:560px){.wrap{padding:12px 10px 64px}.hero button{font-size:13px;padding:12px 4px}.catgrid{grid-template-columns:repeat(3,1fr)}.cat{font-size:12px;min-height:76px}.card{padding:14px;border-radius:20px}.ingrid{grid-template-columns:1fr 1fr}.free-options{grid-template-columns:1fr}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.menu-actions{grid-template-columns:1fr 1fr}
+/* 「今日の買い物リスト」はスマホでも1行 */
+#listSec>.head{display:block}#listSec>.head>div:first-child{width:100%;min-width:0}#listSec>.head h2{white-space:nowrap;word-break:keep-all;overflow-wrap:normal;font-size:18px;line-height:1.25}#listSec>.head .tools{margin-top:10px;width:100%;display:grid;grid-template-columns:1.35fr 1fr .85fr;gap:6px}#listSec>.head .tool{min-width:0;padding-left:7px;padding-right:7px;white-space:nowrap;font-size:11px}
 }
-#listSec > .head h2{
-  white-space:nowrap;
-  word-break:keep-all;
-  overflow-wrap:normal;
-}
-@media (max-width:560px){
-  #listSec > .head{
-    display:block;
-  }
-  #listSec > .head > div:first-child{
-    width:100%;
-  }
-  #listSec > .head h2{
-    white-space:nowrap;
-    font-size:18px;
-    line-height:1.25;
-  }
-  #listSec > .head .tools{
-    margin-top:10px;
-    width:100%;
-    display:grid;
-    grid-template-columns:1.35fr 1fr 0.85fr;
-    gap:6px;
-  }
-  #listSec > .head .tool{
-    min-width:0;
-    padding-left:7px;
-    padding-right:7px;
-    white-space:nowrap;
-    font-size:11px;
-  }
-}
-
 </style>
 </head>
 <body>
@@ -70,10 +42,11 @@ dialog{width:min(560px,calc(100% - 22px));border:0;border-radius:24px;padding:0;
 <div class="series">ゆるっとシリーズ ✨</div>
 <h1>🛒 ゆるっと買い物</h1>
 <p class="subtitle">献立の買い出しを、もっとラクに。<br>よく買う食材はワンタップで追加。</p>
+<div class="header-tools"><button class="helpbtn" id="openGuide">？ 使い方</button></div>
 <div class="hero">
 <button id="goCat">🥕 いつもの食材<small>カテゴリから追加</small></button>
-<button id="goMenu">🍳 献立から追加<small>まとめて追加</small></button>
-<button id="goFree">✏️ 自由に追加<small>好きな物を入力</small></button>
+<button id="goMenu">🍳 献立から追加<small>レシピも見られる</small></button>
+<button id="goFree">✏️ 自由に追加<small>カテゴリ・お気に入り対応</small></button>
 </div>
 </header>
 
@@ -81,17 +54,18 @@ dialog{width:min(560px,calc(100% - 22px));border:0;border-radius:24px;padding:0;
 <div class="head"><div><h2>📝 今日の買い物リスト</h2><div class="sub" id="count">0件</div></div><div class="tools"><button class="tool" id="mode">🛒 買い出しモード</button><button class="tool" id="rmDone">✓ 済みを削除</button><button class="tool" id="clear">全部消す</button></div></div>
 <div class="list" id="list"></div>
 <div class="addrow"><input class="input" id="free" placeholder="買うものを自由に追加…" maxlength="50"><button class="add" id="addFree">＋ 追加</button></div>
+<div class="free-options"><select class="select" id="freeCat"></select><label class="fav-check"><input id="freeFav" type="checkbox"> ⭐ お気に入りにも追加</label></div>
 </section>
 
 <section class="card">
 <div class="head"><h2>⭐ よく買うもの</h2><button class="tool" id="favToggle">一覧を見る</button></div>
 <div class="quickrow" id="favQuick"></div>
-<div class="panel" id="favPanel"><div class="sub" style="margin-bottom:10px">食材の ☆ を押すと登録できます。</div><div class="ingrid" id="favGrid"></div></div>
+<div class="panel" id="favPanel"><div class="sub" style="margin-bottom:10px">買い物リストの ☆ や、自由追加時の「お気に入りにも追加」でも登録できます。</div><div class="ingrid" id="favGrid"></div></div>
 </section>
 
 <div class="layout">
 <section class="card" id="catSec">
-<div class="head"><h2>🥬 カテゴリから選ぶ</h2><span class="sub">タップで開く</span></div>
+<div class="head"><h2>🥬 カテゴリから選ぶ</h2><button class="tool" id="manageCats">⚙️ カテゴリ管理</button></div>
 <div class="catgrid" id="catGrid"></div>
 <div class="panel" id="ingPanel">
 <div class="head"><h2 id="ingTitle">食材</h2><button class="tool" id="closeIng">閉じる</button></div>
@@ -101,38 +75,205 @@ dialog{width:min(560px,calc(100% - 22px));border:0;border-radius:24px;padding:0;
 </section>
 
 <section class="card" id="menuSec">
-<div class="head"><h2>🍳 献立から追加</h2><span class="sub">必要な食材をまとめて</span></div>
+<div class="head"><h2>🍳 献立から追加</h2><span class="sub">24メニューに初心者レシピ付き</span></div>
 <div class="menugrid" id="menuGrid"></div>
 </section>
 </div>
 
-<section class="card"><h2 style="margin-top:0">💡 使い方のヒント</h2><p class="sub" style="line-height:1.8">・同じ食材は重複せず、1つにまとめます。<br>・チェックした物は自動で下へ移動します。<br>・買い出しモードでは、未チェックだけ表示します。<br>・リストとお気に入りは、このブラウザ内に保存されます。</p></section>
+<section class="card"><h2 style="margin-top:0">💡 使い方のヒント</h2><p class="sub" style="line-height:1.8">・自由追加した物も⭐お気に入りにできます。<br>・商品のカテゴリはあとから変更できます。<br>・自分だけのカテゴリを追加できます。<br>・献立の「レシピ」から1人分 / 2人分の材料と簡単な作り方を確認できます。<br>・リストと設定は、このブラウザ内に保存されます。</p></section>
 <p class="footer">おいしい毎日を、ゆるっと。🛒✨<br>ログイン・外部API・広告なし。</p>
 </main>
 
-<dialog id="memoDlg"><div class="dinner"><div class="dhead"><h3>📝 メモ・数量</h3><button class="x" id="memoX">×</button></div><input class="input" id="memo" maxlength="40" placeholder="例：2個 / 大きめ / 特売なら"><div class="dacts"><button class="ghost" id="memoCancel">やめる</button><button class="primary" id="memoSave">保存</button></div></div></dialog>
+<dialog id="editDlg"><div class="dinner"><div class="dhead"><h3>✏️ 買うものを編集</h3><button class="x" data-close="editDlg">×</button></div>
+<div class="formgrid"><div class="field full"><label>名前</label><input class="input" id="editName" maxlength="50"></div><div class="field"><label>カテゴリ</label><select class="select" id="editCat"></select></div><div class="field"><label>数量・メモ</label><input class="input" id="editMemo" maxlength="40" placeholder="例：2個 / 大きめ"></div><div class="field full"><label class="fav-check"><input id="editFav" type="checkbox"> ⭐ お気に入りに登録</label></div></div>
+<div class="dacts"><button class="ghost" data-close="editDlg">やめる</button><button class="primary" id="editSave">保存</button></div></div></dialog>
+
+<dialog id="catDlg"><div class="dinner"><div class="dhead"><h3>🏷️ カテゴリ管理</h3><button class="x" data-close="catDlg">×</button></div>
+<p class="sub">既存カテゴリはそのまま。自分用カテゴリを追加・名前変更できます。</p>
+<div class="custom-list" id="customList"></div>
+<div class="formgrid"><div class="field"><label>絵文字</label><input class="input" id="newCatEmoji" maxlength="4" placeholder="🐶"></div><div class="field"><label>カテゴリ名</label><input class="input" id="newCatName" maxlength="20" placeholder="ペット"></div></div>
+<div class="dacts"><button class="ghost" data-close="catDlg">閉じる</button><button class="primary" id="addCategory">＋ カテゴリ追加</button></div></div></dialog>
+
+<dialog id="renameCatDlg"><div class="dinner"><div class="dhead"><h3>✏️ カテゴリ名を変更</h3><button class="x" data-close="renameCatDlg">×</button></div>
+<div class="formgrid"><div class="field"><label>絵文字</label><input class="input" id="renameEmoji" maxlength="4"></div><div class="field"><label>カテゴリ名</label><input class="input" id="renameName" maxlength="20"></div></div>
+<div class="dacts"><button class="ghost" data-close="renameCatDlg">やめる</button><button class="primary" id="renameSave">保存</button></div></div></dialog>
+
+<dialog id="recipeDlg"><div class="dinner"><div class="dhead"><h3 id="recipeTitle">🍳 レシピ</h3><button class="x" data-close="recipeDlg">×</button></div>
+<div class="recipe-meta"><span class="recipe-badge" id="recipeTime"></span><span class="recipe-badge">🔰 初心者向け</span></div>
+<div class="servings"><button class="serving-btn active" data-serving="1">1人分</button><button class="serving-btn" data-serving="2">2人分</button></div>
+<div class="recipe-cols"><div class="recipe-box"><h4>🧺 材料</h4><ul id="recipeIngredients"></ul></div><div class="recipe-box"><h4>🍳 作り方</h4><ol id="recipeSteps"></ol></div></div>
+<div class="recipe-tip" id="recipeTip"></div>
+<div class="dacts"><button class="ghost" data-close="recipeDlg">閉じる</button><button class="primary" id="recipeAdd">🛒 材料を買い物リストへ</button></div></div></dialog>
+
+<dialog id="guideDlg"><div class="dinner"><div class="dhead"><h3>🛒 かんたん使い方ガイド</h3><button class="x" data-close="guideDlg">×</button></div>
+<div class="guide-list">
+<div class="guide-step"><div class="guide-num">1</div><div><b>買う物を追加</b><p>「いつもの食材」「献立」「自由に追加」から選べます。</p></div></div>
+<div class="guide-step"><div class="guide-num">2</div><div><b>⭐ よく買う物をお気に入りへ</b><p>自由追加した物も、買い物リストの☆から登録できます。</p></div></div>
+<div class="guide-step"><div class="guide-num">3</div><div><b>カテゴリを変更・追加</b><p>商品の✏️からカテゴリ変更。カテゴリ管理では自分専用カテゴリも作れます。</p></div></div>
+<div class="guide-step"><div class="guide-num">4</div><div><b>献立からまとめて追加</b><p>「材料追加」で、その献立に必要な物をまとめてリストへ。</p></div></div>
+<div class="guide-step"><div class="guide-num">5</div><div><b>初心者レシピを見る</b><p>1人分 / 2人分を切り替えて、材料と簡単な手順を確認できます。</p></div></div>
+<div class="guide-step"><div class="guide-num">6</div><div><b>買い物中はチェック</b><p>買った物に✓。買い出しモードなら未購入だけ表示します。</p></div></div>
+<div class="guide-step"><div class="guide-num">7</div><div><b>保存について</b><p>リスト・お気に入り・追加カテゴリはこのブラウザ内に保存されます。</p></div></div>
+</div>
+<div class="dacts"><a class="ghost" href="./guide.html" target="_blank" style="text-align:center;text-decoration:none">📄 1枚ガイドを開く</a><button class="primary" data-close="guideDlg">わかった 👍</button></div></div></dialog>
+
 <div class="toast" id="toast"></div>
 <script src="./data.js"></script>
 <script>
 (()=>{
-const $=s=>document.querySelector(s),LKEY="yuruttoShopping.list.v1",FKEY="yuruttoShopping.fav.v1",MKEY="yuruttoShopping.mode.v1";
-let list=load(LKEY,[]),favs=load(FKEY,["牛乳","卵","食パン","納豆","バナナ","ヨーグルト"]),buyMode=localStorage.getItem(MKEY)==="1",openCat=null,memoId=null;
-function load(k,f){try{const v=JSON.parse(localStorage.getItem(k));return v??f}catch{return f}}function save(){localStorage.setItem(LKEY,JSON.stringify(list));localStorage.setItem(FKEY,JSON.stringify(favs))}
-function uid(){return Math.random().toString(36).slice(2)+Date.now().toString(36)}function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}function catOf(n){return TEMPLATE_DATA.ingredientCategory[n]||"その他"}
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const LKEY="yuruttoShopping.list.v1",FKEY="yuruttoShopping.fav.v1",MKEY="yuruttoShopping.mode.v1",CKEY="yuruttoShopping.customCats.v1";
+let list=load(LKEY,[]),customCats=load(CKEY,[]),buyMode=localStorage.getItem(MKEY)==="1",openCat=null,editId=null,renameCatId=null,recipeName=null,servings=1;
+let favs=normalizeFavs(load(FKEY,["牛乳","卵","食パン","納豆","バナナ","ヨーグルト"]));
+
+function load(k,f){try{const v=JSON.parse(localStorage.getItem(k));return v??f}catch{return f}}
+function save(){localStorage.setItem(LKEY,JSON.stringify(list));localStorage.setItem(FKEY,JSON.stringify(favs));localStorage.setItem(CKEY,JSON.stringify(customCats))}
+function uid(){return Math.random().toString(36).slice(2)+Date.now().toString(36)}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
 function toast(m){const e=$("#toast");e.textContent=m;e.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove("show"),1500)}
-function addItem(n,c){n=(n||"").trim();if(!n)return false;if(list.some(x=>x.name===n)){toast(`「${n}」はもう入ってるよ 👌`);return false}list.push({id:uid(),name:n,category:c||catOf(n),done:false,memo:"",addedAt:Date.now()});save();renderList();toast(`「${n}」を追加したよ ✨`);return true}
-function addMenu(m){let a=0;for(const n of TEMPLATE_DATA.menus[m])if(!list.some(x=>x.name===n)){list.push({id:uid(),name:n,category:catOf(n),done:false,memo:"",addedAt:Date.now()});a++}save();renderList();toast(a?`${m}：${a}品追加したよ 🍳`:"必要な食材はもう入ってるよ 👌")}
-function renderList(){const r=$("#list");r.innerHTML="";let v=[...list].sort((a,b)=>(a.done-b.done)||(a.addedAt-b.addedAt)).filter(x=>!buyMode||!x.done);if(!v.length)r.innerHTML=`<div class="empty">${buyMode&&list.length?"未チェックの買い物はないよ 🎉":"まだ空っぽ。<br>食材や献立から追加してみよう 🛒"}</div>`;for(const it of v){const e=document.createElement("div");e.className="item"+(it.done?" done":"");e.innerHTML=`<button class="check">${it.done?"✓":""}</button><div><div class="name">${esc(it.name)}</div><div class="meta"><span class="chip">${esc(it.category)}</span>${it.memo?`<span class="chip memo-chip">${esc(it.memo)}</span>`:""}</div></div><div class="acts"><button class="icon memoBtn">📝</button><button class="icon del">×</button></div>`;e.querySelector(".check").onclick=()=>{it.done=!it.done;save();renderList()};e.querySelector(".del").onclick=()=>{list=list.filter(x=>x.id!==it.id);save();renderList()};e.querySelector(".memoBtn").onclick=()=>{memoId=it.id;$("#memo").value=it.memo||"";$("#memoDlg").showModal()};r.appendChild(e)}$("#count").textContent=`${list.filter(x=>!x.done).length}件 未購入 / ${list.length}件`;$("#mode").classList.toggle("active",buyMode);$("#mode").textContent=buyMode?"🛒 買い出し中":"🛒 買い出しモード"}
-function renderCats(){const r=$("#catGrid");for(const [c,it] of Object.entries(TEMPLATE_DATA.categories)){const b=document.createElement("button");b.className="cat";b.innerHTML=`<span class="emoji">${TEMPLATE_DATA.catEmoji[c]}</span>${esc(c)}<small>${it.length}種類</small>`;b.onclick=()=>openIngredients(c);r.appendChild(b)}}
-function openIngredients(c){openCat=c;$("#ingTitle").textContent=`${TEMPLATE_DATA.catEmoji[c]} ${c}`;$("#search").value="";$("#ingPanel").classList.add("show");renderIng();setTimeout(()=>$("#ingPanel").scrollIntoView({behavior:"smooth",block:"nearest"}),50)}
-function renderIng(){const r=$("#ingGrid"),q=$("#search").value.trim();r.innerHTML="";if(!openCat)return;for(const n of TEMPLATE_DATA.categories[openCat].filter(x=>!q||x.includes(q))){const e=document.createElement("div");e.className="ing";e.innerHTML=`<button class="n">＋ ${esc(n)}</button><button class="star">${favs.includes(n)?"⭐":"☆"}</button>`;e.querySelector(".n").onclick=()=>addItem(n,openCat);e.querySelector(".star").onclick=()=>toggleFav(n);r.appendChild(e)}}
-function toggleFav(n){favs=favs.includes(n)?favs.filter(x=>x!==n):[n,...favs];save();renderFavs();renderIng()}
-function renderFavs(){const q=$("#favQuick"),g=$("#favGrid");q.innerHTML="";g.innerHTML="";for(const n of favs.slice(0,8)){const b=document.createElement("button");b.className="quick";b.textContent=`＋ ${n}`;b.onclick=()=>addItem(n);q.appendChild(b)}for(const n of favs){const e=document.createElement("div");e.className="ing";e.innerHTML=`<button class="n">＋ ${esc(n)}</button><button class="star">⭐</button>`;e.querySelector(".n").onclick=()=>addItem(n);e.querySelector(".star").onclick=()=>toggleFav(n);g.appendChild(e)}if(!favs.length)g.innerHTML='<div class="sub">まだお気に入りはありません。</div>'}
-function renderMenus(){const r=$("#menuGrid");for(const n of Object.keys(TEMPLATE_DATA.menus)){const b=document.createElement("button");b.className="menu";b.textContent=n;b.onclick=()=>addMenu(n);r.appendChild(b)}}
-$("#addFree").onclick=()=>{if(addItem($("#free").value,"その他"))$("#free").value=""};$("#free").onkeydown=e=>{if(e.key==="Enter")$("#addFree").click()};$("#mode").onclick=()=>{buyMode=!buyMode;localStorage.setItem(MKEY,buyMode?"1":"0");renderList()};$("#rmDone").onclick=()=>{const n=list.filter(x=>x.done).length;if(!n)return toast("チェック済みはないよ");if(confirm(`チェック済み ${n}件を削除しますか？`)){list=list.filter(x=>!x.done);save();renderList()}};$("#clear").onclick=()=>{if(list.length&&confirm("買い物リストを全部消しますか？")){list=[];save();renderList()}};$("#favToggle").onclick=()=>{const p=$("#favPanel");p.classList.toggle("show");$("#favToggle").textContent=p.classList.contains("show")?"閉じる":"一覧を見る"};$("#closeIng").onclick=()=>$("#ingPanel").classList.remove("show");$("#search").oninput=renderIng;
+function defaultCats(){return Object.keys(TEMPLATE_DATA.categories)}
+function allCats(){return [...defaultCats(),...customCats.map(x=>x.name)]}
+function catEmoji(c){return TEMPLATE_DATA.catEmoji[c]||customCats.find(x=>x.name===c)?.emoji||"🏷️"}
+function catOf(n){return TEMPLATE_DATA.ingredientCategory[n]||"その他"}
+function normalizeFavs(arr){return (Array.isArray(arr)?arr:[]).map(v=>typeof v==="string"?{name:v,category:catOf(v)}:{name:v.name,category:v.category||catOf(v.name)}).filter(x=>x.name)}
+function favObj(n){return favs.find(x=>x.name===n)}
+function isFav(n){return !!favObj(n)}
+function setFav(n,c,on){
+  favs=favs.filter(x=>x.name!==n);
+  if(on)favs.unshift({name:n,category:c||catOf(n)});
+  save();renderFavs();renderIng();
+}
+function toggleFav(n,c){setFav(n,c,!isFav(n));toast(isFav(n)?"お気に入りに追加したよ ⭐":"お気に入りから外したよ")}
+function fillSelect(el,value){
+  el.innerHTML=allCats().map(c=>`<option value="${esc(c)}">${catEmoji(c)} ${esc(c)}</option>`).join("");
+  if(value&&allCats().includes(value))el.value=value;else if(allCats().includes("その他"))el.value="その他";
+}
+function renderCategorySelects(){fillSelect($("#freeCat"),$("#freeCat").value||"その他");fillSelect($("#editCat"),$("#editCat").value||"その他")}
+
+function addItem(n,c,favorite=false,memo=""){
+  n=(n||"").trim();if(!n)return false;
+  const exists=list.find(x=>x.name===n);
+  if(exists){
+    if(favorite&&!isFav(n))setFav(n,exists.category,true);
+    toast(`「${n}」はもう入ってるよ 👌`);return false
+  }
+  const cat=allCats().includes(c)?c:catOf(n);
+  list.push({id:uid(),name:n,category:cat,done:false,memo:memo||"",addedAt:Date.now()});
+  if(favorite)setFav(n,cat,true);else save();
+  renderList();toast(`「${n}」を追加したよ ✨`);return true
+}
+function addMenu(m){
+  let a=0;for(const n of TEMPLATE_DATA.menus[m])if(!list.some(x=>x.name===n)){list.push({id:uid(),name:n,category:catOf(n),done:false,memo:"",addedAt:Date.now()});a++}
+  save();renderList();toast(a?`${m}：${a}品追加したよ 🍳`:"必要な食材はもう入ってるよ 👌")
+}
+function renderList(){
+  const r=$("#list");r.innerHTML="";
+  let v=[...list].sort((a,b)=>(a.done-b.done)||(a.addedAt-b.addedAt)).filter(x=>!buyMode||!x.done);
+  if(!v.length)r.innerHTML=`<div class="empty">${buyMode&&list.length?"未チェックの買い物はないよ 🎉":"まだ空っぽ。<br>食材や献立から追加してみよう 🛒"}</div>`;
+  for(const it of v){
+    const e=document.createElement("div");e.className="item"+(it.done?" done":"");
+    e.innerHTML=`<button class="check">${it.done?"✓":""}</button><div><div class="name">${esc(it.name)}</div><div class="meta"><span class="chip">${catEmoji(it.category)} ${esc(it.category)}</span>${it.memo?`<span class="chip memo-chip">${esc(it.memo)}</span>`:""}</div></div><div class="acts"><button class="icon favBtn">${isFav(it.name)?"⭐":"☆"}</button><button class="icon editBtn">✏️</button><button class="icon del">×</button></div>`;
+    e.querySelector(".check").onclick=()=>{it.done=!it.done;save();renderList()};
+    e.querySelector(".del").onclick=()=>{list=list.filter(x=>x.id!==it.id);save();renderList()};
+    e.querySelector(".favBtn").onclick=()=>{toggleFav(it.name,it.category);renderList()};
+    e.querySelector(".editBtn").onclick=()=>openEdit(it.id);
+    r.appendChild(e)
+  }
+  $("#count").textContent=`${list.filter(x=>!x.done).length}件 未購入 / ${list.length}件`;$("#mode").classList.toggle("active",buyMode);$("#mode").textContent=buyMode?"🛒 買い出し中":"🛒 買い出しモード"
+}
+function openEdit(id){
+  const it=list.find(x=>x.id===id);if(!it)return;editId=id;
+  $("#editName").value=it.name;fillSelect($("#editCat"),it.category);$("#editMemo").value=it.memo||"";$("#editFav").checked=isFav(it.name);$("#editDlg").showModal()
+}
+$("#editSave").onclick=()=>{
+  const it=list.find(x=>x.id===editId);if(!it)return;
+  const oldName=it.name,oldFav=isFav(oldName),name=$("#editName").value.trim();if(!name)return toast("名前を入れてね");
+  if(name!==oldName&&list.some(x=>x.name===name))return toast("同じ名前がリストにあるよ");
+  it.name=name;it.category=$("#editCat").value;it.memo=$("#editMemo").value.trim();
+  if(oldFav)favs=favs.filter(x=>x.name!==oldName);
+  if($("#editFav").checked)setFav(name,it.category,true);else save();
+  $("#editDlg").close();renderList();renderFavs();toast("更新したよ ✨")
+};
+
+function renderCats(){
+  const r=$("#catGrid");r.innerHTML="";
+  for(const c of allCats()){
+    const items=TEMPLATE_DATA.categories[c]||[];
+    const favCount=favs.filter(x=>x.category===c).length;
+    const b=document.createElement("button");b.className="cat";b.innerHTML=`<span class="emoji">${catEmoji(c)}</span>${esc(c)}<small>${items.length?`${items.length}種類`:favCount?`お気に入り ${favCount}件`:"自由追加用"}</small>`;
+    b.onclick=()=>openIngredients(c);r.appendChild(b)
+  }
+}
+function openIngredients(c){openCat=c;$("#ingTitle").textContent=`${catEmoji(c)} ${c}`;$("#search").value="";$("#ingPanel").classList.add("show");renderIng();setTimeout(()=>$("#ingPanel").scrollIntoView({behavior:"smooth",block:"nearest"}),50)}
+function renderIng(){
+  const r=$("#ingGrid"),q=$("#search").value.trim();r.innerHTML="";if(!openCat)return;
+  let names=TEMPLATE_DATA.categories[openCat]||favs.filter(x=>x.category===openCat).map(x=>x.name);
+  names=[...new Set(names)].filter(x=>!q||x.includes(q));
+  if(!names.length){r.innerHTML='<div class="custom-note">このカテゴリにはテンプレ食材がありません。<br>自由追加でカテゴリを選んで使ってね。</div>';return}
+  for(const n of names){const e=document.createElement("div");e.className="ing";e.innerHTML=`<button class="n">＋ ${esc(n)}</button><button class="star">${isFav(n)?"⭐":"☆"}</button>`;e.querySelector(".n").onclick=()=>addItem(n,openCat);e.querySelector(".star").onclick=()=>{toggleFav(n,openCat)};r.appendChild(e)}
+}
+function renderFavs(){
+  const q=$("#favQuick"),g=$("#favGrid");q.innerHTML="";g.innerHTML="";
+  for(const f of favs.slice(0,8)){const b=document.createElement("button");b.className="quick";b.textContent=`＋ ${f.name}`;b.onclick=()=>addItem(f.name,f.category);q.appendChild(b)}
+  for(const f of favs){const e=document.createElement("div");e.className="ing";e.innerHTML=`<button class="n">＋ ${esc(f.name)}<span class="sub" style="display:block">${catEmoji(f.category)} ${esc(f.category)}</span></button><button class="star">⭐</button>`;e.querySelector(".n").onclick=()=>addItem(f.name,f.category);e.querySelector(".star").onclick=()=>toggleFav(f.name,f.category);g.appendChild(e)}
+  if(!favs.length)g.innerHTML='<div class="sub">まだお気に入りはありません。</div>'
+}
+
+function renderCustomCats(){
+  const r=$("#customList");r.innerHTML="";
+  if(!customCats.length){r.innerHTML='<div class="sub">まだ追加カテゴリはありません。</div>';return}
+  for(const c of customCats){const e=document.createElement("div");e.className="custom-row";e.innerHTML=`<b>${esc(c.emoji||"🏷️")} ${esc(c.name)}</b><button class="smallbtn rename">名前変更</button><button class="smallbtn danger delete">削除</button>`;e.querySelector(".rename").onclick=()=>{renameCatId=c.id;$("#renameEmoji").value=c.emoji||"🏷️";$("#renameName").value=c.name;$("#renameCatDlg").showModal()};e.querySelector(".delete").onclick=()=>deleteCategory(c.id);r.appendChild(e)}
+}
+$("#addCategory").onclick=()=>{
+  const name=$("#newCatName").value.trim(),emoji=$("#newCatEmoji").value.trim()||"🏷️";if(!name)return toast("カテゴリ名を入れてね");
+  if(allCats().includes(name))return toast("同じカテゴリ名があるよ");
+  customCats.push({id:uid(),name,emoji});$("#newCatName").value="";$("#newCatEmoji").value="";save();renderCustomCats();renderCats();renderCategorySelects();toast("カテゴリを追加したよ 🏷️")
+};
+$("#renameSave").onclick=()=>{
+  const c=customCats.find(x=>x.id===renameCatId);if(!c)return;
+  const old=c.name,name=$("#renameName").value.trim(),emoji=$("#renameEmoji").value.trim()||"🏷️";if(!name)return toast("カテゴリ名を入れてね");
+  if(name!==old&&allCats().includes(name))return toast("同じカテゴリ名があるよ");
+  c.name=name;c.emoji=emoji;list.forEach(x=>{if(x.category===old)x.category=name});favs.forEach(x=>{if(x.category===old)x.category=name});save();$("#renameCatDlg").close();renderCustomCats();renderCats();renderCategorySelects();renderList();renderFavs();toast("カテゴリ名を変更したよ")
+};
+function deleteCategory(id){
+  const c=customCats.find(x=>x.id===id);if(!c)return;if(!confirm(`「${c.name}」を削除しますか？\nこのカテゴリの商品は「その他」に移します。`))return;
+  list.forEach(x=>{if(x.category===c.name)x.category="その他"});favs.forEach(x=>{if(x.category===c.name)x.category="その他"});customCats=customCats.filter(x=>x.id!==id);save();renderCustomCats();renderCats();renderCategorySelects();renderList();renderFavs()
+}
+
+function renderMenus(){
+  const r=$("#menuGrid");r.innerHTML="";
+  for(const n of Object.keys(TEMPLATE_DATA.menus)){const e=document.createElement("div");e.className="menu-card";e.innerHTML=`<div class="menu-title">${esc(n)}</div><div class="menu-actions"><button class="menu-action menu-add">🛒 材料追加</button><button class="menu-action menu-recipe">📖 レシピ</button></div>`;e.querySelector(".menu-add").onclick=()=>addMenu(n);e.querySelector(".menu-recipe").onclick=()=>openRecipe(n);r.appendChild(e)}
+}
+function openRecipe(n){recipeName=n;servings=1;$("#recipeDlg").showModal();renderRecipe()}
+function renderRecipe(){
+  const r=TEMPLATE_DATA.recipes[recipeName];if(!r)return;
+  $("#recipeTitle").textContent=recipeName;$("#recipeTime").textContent=`⏱️ ${r.time}`;
+  $$(".serving-btn").forEach(b=>b.classList.toggle("active",Number(b.dataset.serving)===servings));
+  $("#recipeIngredients").innerHTML=r.ingredients.map(x=>`<li>${esc(x[0])}：${esc(servings===1?x[1]:x[2])}</li>`).join("");
+  $("#recipeSteps").innerHTML=r.steps.map(x=>`<li>${esc(x)}</li>`).join("");
+  $("#recipeTip").innerHTML=`💡 ${esc(r.tip)}<br><span class="sub">※ 肉・魚・卵などは中心まで十分に加熱し、商品の表示やご家庭の衛生ルールも優先してね。</span>`
+}
+$$(".serving-btn").forEach(b=>b.onclick=()=>{servings=Number(b.dataset.serving);renderRecipe()});
+$("#recipeAdd").onclick=()=>{
+  const r=TEMPLATE_DATA.recipes[recipeName];let n=0;
+  for(const x of r.ingredients){const name=x[0],memo=servings===1?x[1]:x[2];if(!list.some(i=>i.name===name)){list.push({id:uid(),name,category:catOf(name),done:false,memo,addedAt:Date.now()});n++}}
+  save();renderList();toast(n?`${n}品を追加したよ 🛒`:"材料はもうリストに入ってるよ")
+};
+
+$("#addFree").onclick=()=>{const v=$("#free").value.trim();if(addItem(v,$("#freeCat").value,$("#freeFav").checked)){$("#free").value="";$("#freeFav").checked=false}};
+$("#free").onkeydown=e=>{if(e.key==="Enter")$("#addFree").click()};
+$("#mode").onclick=()=>{buyMode=!buyMode;localStorage.setItem(MKEY,buyMode?"1":"0");renderList()};
+$("#rmDone").onclick=()=>{const n=list.filter(x=>x.done).length;if(!n)return toast("チェック済みはないよ");if(confirm(`チェック済み ${n}件を削除しますか？`)){list=list.filter(x=>!x.done);save();renderList()}};
+$("#clear").onclick=()=>{if(list.length&&confirm("買い物リストを全部消しますか？")){list=[];save();renderList()}};
+$("#favToggle").onclick=()=>{const p=$("#favPanel");p.classList.toggle("show");$("#favToggle").textContent=p.classList.contains("show")?"閉じる":"一覧を見る"};
+$("#closeIng").onclick=()=>$("#ingPanel").classList.remove("show");$("#search").oninput=renderIng;
 $("#goCat").onclick=()=>$("#catSec").scrollIntoView({behavior:"smooth"});$("#goMenu").onclick=()=>$("#menuSec").scrollIntoView({behavior:"smooth"});$("#goFree").onclick=()=>{$("#listSec").scrollIntoView({behavior:"smooth"});setTimeout(()=>$("#free").focus(),350)};
-$("#memoX").onclick=$("#memoCancel").onclick=()=>$("#memoDlg").close();$("#memoSave").onclick=()=>{const i=list.find(x=>x.id===memoId);if(i)i.memo=$("#memo").value.trim();save();$("#memoDlg").close();renderList()};
-renderCats();renderMenus();renderFavs();renderList();if("serviceWorker"in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
+$("#manageCats").onclick=()=>{renderCustomCats();$("#catDlg").showModal()};
+$("#openGuide").onclick=()=>$("#guideDlg").showModal();
+$$("[data-close]").forEach(b=>b.onclick=()=>$("#"+b.dataset.close).close());
+
+renderCategorySelects();renderCats();renderMenus();renderFavs();renderList();
+if("serviceWorker"in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
 })();
 </script>
 </body></html>

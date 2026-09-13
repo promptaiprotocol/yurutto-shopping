@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f8efe4">
+<meta name="description" content="献立の買い出しを、ゆるっとラクに。よく買う食材と献立テンプレートから作れる買い物リスト。">
+<title>ゆるっと買い物</title>
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+<style>
+:root{--bg:#f8efe4;--paper:#fffdf9;--ink:#514941;--muted:#8d8178;--line:#eadccf;--mint:#d9eee3;--peach:#f6ddd4;--yellow:#f7e9b9;--shadow:0 12px 34px rgba(90,65,45,.08)}
+*{box-sizing:border-box}body{margin:0;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;background:radial-gradient(circle at 8% 0%,#fff 0,transparent 30%),var(--bg);min-height:100vh}button,input{font:inherit}button{color:inherit;cursor:pointer}
+.wrap{width:min(860px,100%);margin:auto;padding:18px 14px 72px}header{text-align:center;padding:10px 0 14px}.series{display:inline-flex;padding:7px 14px;background:#ffffff99;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-weight:700;font-size:13px}h1{font-size:clamp(32px,8vw,48px);margin:12px 0 4px}.subtitle{margin:0;color:var(--muted);line-height:1.65;font-size:14px}
+.hero{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:16px}.hero button{border:1px solid var(--line);border-radius:20px;padding:14px 7px;background:#fff;min-height:86px;font-weight:800}.hero small{display:block;font-size:11px;color:var(--muted);margin-top:5px}.hero button:nth-child(1){background:linear-gradient(135deg,var(--mint),#fff)}.hero button:nth-child(2){background:linear-gradient(135deg,var(--peach),#fff)}.hero button:nth-child(3){background:linear-gradient(135deg,var(--yellow),#fff)}
+.card{background:#fffdf9ef;border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:17px;margin:14px 0}.head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.head h2{margin:0;font-size:19px}.sub{font-size:12px;color:var(--muted)}
+.tools{display:flex;gap:6px;flex-wrap:wrap}.tool{border:1px solid var(--line);background:#fff;border-radius:12px;padding:8px 9px;font-size:12px;font-weight:700}.tool.active{background:var(--mint)}
+.list{display:grid;gap:8px}.item{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;border:1px solid var(--line);border-radius:16px;padding:11px;background:#fff}.item.done{opacity:.5}.item.done .name{text-decoration:line-through}.check{width:31px;height:31px;border:1px solid #d9cec4;border-radius:10px;background:#fff;font-weight:900}.item.done .check{background:var(--mint)}.name{font-weight:800}.meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}.chip{font-size:10px;padding:3px 7px;border-radius:999px;background:#f2eee9;color:var(--muted)}.memo-chip{background:var(--yellow)}.acts{display:flex}.icon{border:0;background:transparent;padding:5px;font-size:17px}.empty{text-align:center;color:var(--muted);padding:28px 8px;line-height:1.7}
+.addrow{display:flex;gap:8px;margin-top:10px}.input{width:100%;min-width:0;border:1px solid var(--line);border-radius:14px;background:#fff;padding:11px 12px;color:var(--ink);outline:none}.add{border:0;border-radius:14px;padding:11px 14px;background:var(--mint);font-weight:850;white-space:nowrap}
+.quickrow{display:flex;gap:7px;overflow:auto;padding-bottom:3px}.quick{border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 12px;white-space:nowrap;font-weight:700;font-size:13px}
+.layout{display:grid;grid-template-columns:1fr 1.15fr;gap:14px;align-items:start}.catgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.cat{border:1px solid var(--line);border-radius:18px;background:#fff;padding:12px 7px;min-height:80px;font-weight:800}.cat .emoji{font-size:25px;display:block;margin-bottom:5px}.cat small{display:block;color:var(--muted);font-size:10px;margin-top:3px}.menugrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.menu{border:1px solid var(--line);border-radius:15px;background:#fff;padding:11px 10px;text-align:left;font-weight:750}
+.panel{display:none;margin-top:12px;border-top:1px dashed var(--line);padding-top:12px}.panel.show{display:block}.search{margin-bottom:10px}.ingrid{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}.ing{display:flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid var(--line);border-radius:13px;background:#fff;padding:9px 10px}.ing .n{border:0;background:transparent;text-align:left;flex:1;padding:0;font-size:13px;font-weight:750}.star{border:0;background:transparent;font-size:18px}
+dialog{width:min(560px,calc(100% - 22px));border:0;border-radius:24px;padding:0;background:var(--paper);color:var(--ink);box-shadow:0 30px 90px rgba(55,40,30,.24)}dialog::backdrop{background:rgba(60,45,35,.28);backdrop-filter:blur(4px)}.dinner{padding:19px}.dhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.dhead h3{margin:0}.x{border:0;border-radius:50%;width:34px;height:34px;background:#f3ede7}.dacts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}.ghost,.primary{border:0;border-radius:14px;padding:11px;font-weight:800}.ghost{background:#f2ece6}.primary{background:var(--mint)}
+.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;background:#514941;color:#fff;padding:10px 15px;border-radius:999px;font-size:13px;font-weight:700;transition:.2s;z-index:20}.toast.show{opacity:1;transform:translate(-50%,0)}.footer{text-align:center;color:var(--muted);font-size:12px;line-height:1.8;padding:12px}
+@media(max-width:720px){.layout{grid-template-columns:1fr}}@media(max-width:560px){.wrap{padding:12px 10px 64px}.hero button{font-size:13px;padding:12px 4px}.catgrid{grid-template-columns:repeat(3,1fr)}.cat{font-size:12px;min-height:76px}.card{padding:14px;border-radius:20px}.ingrid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header>
+<div class="series">ゆるっとシリーズ ✨</div>
+<h1>🛒 ゆるっと買い物</h1>
+<p class="subtitle">献立の買い出しを、もっとラクに。<br>よく買う食材はワンタップで追加。</p>
+<div class="hero">
+<button id="goCat">🥕 いつもの食材<small>カテゴリから追加</small></button>
+<button id="goMenu">🍳 献立から追加<small>まとめて追加</small></button>
+<button id="goFree">✏️ 自由に追加<small>好きな物を入力</small></button>
+</div>
+</header>
+
+<section class="card" id="listSec">
+<div class="head"><div><h2>📝 今日の買い物リスト</h2><div class="sub" id="count">0件</div></div><div class="tools"><button class="tool" id="mode">🛒 買い出しモード</button><button class="tool" id="rmDone">✓ 済みを削除</button><button class="tool" id="clear">全部消す</button></div></div>
+<div class="list" id="list"></div>
+<div class="addrow"><input class="input" id="free" placeholder="買うものを自由に追加…" maxlength="50"><button class="add" id="addFree">＋ 追加</button></div>
+</section>
+
+<section class="card">
+<div class="head"><h2>⭐ よく買うもの</h2><button class="tool" id="favToggle">一覧を見る</button></div>
+<div class="quickrow" id="favQuick"></div>
+<div class="panel" id="favPanel"><div class="sub" style="margin-bottom:10px">食材の ☆ を押すと登録できます。</div><div class="ingrid" id="favGrid"></div></div>
+</section>
+
+<div class="layout">
+<section class="card" id="catSec">
+<div class="head"><h2>🥬 カテゴリから選ぶ</h2><span class="sub">タップで開く</span></div>
+<div class="catgrid" id="catGrid"></div>
+<div class="panel" id="ingPanel">
+<div class="head"><h2 id="ingTitle">食材</h2><button class="tool" id="closeIng">閉じる</button></div>
+<input class="input search" id="search" placeholder="このカテゴリから検索">
+<div class="ingrid" id="ingGrid"></div>
+</div>
+</section>
+
+<section class="card" id="menuSec">
+<div class="head"><h2>🍳 献立から追加</h2><span class="sub">必要な食材をまとめて</span></div>
+<div class="menugrid" id="menuGrid"></div>
+</section>
+</div>
+
+<section class="card"><h2 style="margin-top:0">💡 使い方のヒント</h2><p class="sub" style="line-height:1.8">・同じ食材は重複せず、1つにまとめます。<br>・チェックした物は自動で下へ移動します。<br>・買い出しモードでは、未チェックだけ表示します。<br>・リストとお気に入りは、このブラウザ内に保存されます。</p></section>
+<p class="footer">おいしい毎日を、ゆるっと。🛒✨<br>ログイン・外部API・広告なし。</p>
+</main>
+
+<dialog id="memoDlg"><div class="dinner"><div class="dhead"><h3>📝 メモ・数量</h3><button class="x" id="memoX">×</button></div><input class="input" id="memo" maxlength="40" placeholder="例：2個 / 大きめ / 特売なら"><div class="dacts"><button class="ghost" id="memoCancel">やめる</button><button class="primary" id="memoSave">保存</button></div></div></dialog>
+<div class="toast" id="toast"></div>
+<script src="./data.js"></script>
+<script>
+(()=>{
+const $=s=>document.querySelector(s),LKEY="yuruttoShopping.list.v1",FKEY="yuruttoShopping.fav.v1",MKEY="yuruttoShopping.mode.v1";
+let list=load(LKEY,[]),favs=load(FKEY,["牛乳","卵","食パン","納豆","バナナ","ヨーグルト"]),buyMode=localStorage.getItem(MKEY)==="1",openCat=null,memoId=null;
+function load(k,f){try{const v=JSON.parse(localStorage.getItem(k));return v??f}catch{return f}}function save(){localStorage.setItem(LKEY,JSON.stringify(list));localStorage.setItem(FKEY,JSON.stringify(favs))}
+function uid(){return Math.random().toString(36).slice(2)+Date.now().toString(36)}function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}function catOf(n){return TEMPLATE_DATA.ingredientCategory[n]||"その他"}
+function toast(m){const e=$("#toast");e.textContent=m;e.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove("show"),1500)}
+function addItem(n,c){n=(n||"").trim();if(!n)return false;if(list.some(x=>x.name===n)){toast(`「${n}」はもう入ってるよ 👌`);return false}list.push({id:uid(),name:n,category:c||catOf(n),done:false,memo:"",addedAt:Date.now()});save();renderList();toast(`「${n}」を追加したよ ✨`);return true}
+function addMenu(m){let a=0;for(const n of TEMPLATE_DATA.menus[m])if(!list.some(x=>x.name===n)){list.push({id:uid(),name:n,category:catOf(n),done:false,memo:"",addedAt:Date.now()});a++}save();renderList();toast(a?`${m}：${a}品追加したよ 🍳`:"必要な食材はもう入ってるよ 👌")}
+function renderList(){const r=$("#list");r.innerHTML="";let v=[...list].sort((a,b)=>(a.done-b.done)||(a.addedAt-b.addedAt)).filter(x=>!buyMode||!x.done);if(!v.length)r.innerHTML=`<div class="empty">${buyMode&&list.length?"未チェックの買い物はないよ 🎉":"まだ空っぽ。<br>食材や献立から追加してみよう 🛒"}</div>`;for(const it of v){const e=document.createElement("div");e.className="item"+(it.done?" done":"");e.innerHTML=`<button class="check">${it.done?"✓":""}</button><div><div class="name">${esc(it.name)}</div><div class="meta"><span class="chip">${esc(it.category)}</span>${it.memo?`<span class="chip memo-chip">${esc(it.memo)}</span>`:""}</div></div><div class="acts"><button class="icon memoBtn">📝</button><button class="icon del">×</button></div>`;e.querySelector(".check").onclick=()=>{it.done=!it.done;save();renderList()};e.querySelector(".del").onclick=()=>{list=list.filter(x=>x.id!==it.id);save();renderList()};e.querySelector(".memoBtn").onclick=()=>{memoId=it.id;$("#memo").value=it.memo||"";$("#memoDlg").showModal()};r.appendChild(e)}$("#count").textContent=`${list.filter(x=>!x.done).length}件 未購入 / ${list.length}件`;$("#mode").classList.toggle("active",buyMode);$("#mode").textContent=buyMode?"🛒 買い出し中":"🛒 買い出しモード"}
+function renderCats(){const r=$("#catGrid");for(const [c,it] of Object.entries(TEMPLATE_DATA.categories)){const b=document.createElement("button");b.className="cat";b.innerHTML=`<span class="emoji">${TEMPLATE_DATA.catEmoji[c]}</span>${esc(c)}<small>${it.length}種類</small>`;b.onclick=()=>openIngredients(c);r.appendChild(b)}}
+function openIngredients(c){openCat=c;$("#ingTitle").textContent=`${TEMPLATE_DATA.catEmoji[c]} ${c}`;$("#search").value="";$("#ingPanel").classList.add("show");renderIng();setTimeout(()=>$("#ingPanel").scrollIntoView({behavior:"smooth",block:"nearest"}),50)}
+function renderIng(){const r=$("#ingGrid"),q=$("#search").value.trim();r.innerHTML="";if(!openCat)return;for(const n of TEMPLATE_DATA.categories[openCat].filter(x=>!q||x.includes(q))){const e=document.createElement("div");e.className="ing";e.innerHTML=`<button class="n">＋ ${esc(n)}</button><button class="star">${favs.includes(n)?"⭐":"☆"}</button>`;e.querySelector(".n").onclick=()=>addItem(n,openCat);e.querySelector(".star").onclick=()=>toggleFav(n);r.appendChild(e)}}
+function toggleFav(n){favs=favs.includes(n)?favs.filter(x=>x!==n):[n,...favs];save();renderFavs();renderIng()}
+function renderFavs(){const q=$("#favQuick"),g=$("#favGrid");q.innerHTML="";g.innerHTML="";for(const n of favs.slice(0,8)){const b=document.createElement("button");b.className="quick";b.textContent=`＋ ${n}`;b.onclick=()=>addItem(n);q.appendChild(b)}for(const n of favs){const e=document.createElement("div");e.className="ing";e.innerHTML=`<button class="n">＋ ${esc(n)}</button><button class="star">⭐</button>`;e.querySelector(".n").onclick=()=>addItem(n);e.querySelector(".star").onclick=()=>toggleFav(n);g.appendChild(e)}if(!favs.length)g.innerHTML='<div class="sub">まだお気に入りはありません。</div>'}
+function renderMenus(){const r=$("#menuGrid");for(const n of Object.keys(TEMPLATE_DATA.menus)){const b=document.createElement("button");b.className="menu";b.textContent=n;b.onclick=()=>addMenu(n);r.appendChild(b)}}
+$("#addFree").onclick=()=>{if(addItem($("#free").value,"その他"))$("#free").value=""};$("#free").onkeydown=e=>{if(e.key==="Enter")$("#addFree").click()};$("#mode").onclick=()=>{buyMode=!buyMode;localStorage.setItem(MKEY,buyMode?"1":"0");renderList()};$("#rmDone").onclick=()=>{const n=list.filter(x=>x.done).length;if(!n)return toast("チェック済みはないよ");if(confirm(`チェック済み ${n}件を削除しますか？`)){list=list.filter(x=>!x.done);save();renderList()}};$("#clear").onclick=()=>{if(list.length&&confirm("買い物リストを全部消しますか？")){list=[];save();renderList()}};$("#favToggle").onclick=()=>{const p=$("#favPanel");p.classList.toggle("show");$("#favToggle").textContent=p.classList.contains("show")?"閉じる":"一覧を見る"};$("#closeIng").onclick=()=>$("#ingPanel").classList.remove("show");$("#search").oninput=renderIng;
+$("#goCat").onclick=()=>$("#catSec").scrollIntoView({behavior:"smooth"});$("#goMenu").onclick=()=>$("#menuSec").scrollIntoView({behavior:"smooth"});$("#goFree").onclick=()=>{$("#listSec").scrollIntoView({behavior:"smooth"});setTimeout(()=>$("#free").focus(),350)};
+$("#memoX").onclick=$("#memoCancel").onclick=()=>$("#memoDlg").close();$("#memoSave").onclick=()=>{const i=list.find(x=>x.id===memoId);if(i)i.memo=$("#memo").value.trim();save();$("#memoDlg").close();renderList()};
+renderCats();renderMenus();renderFavs();renderList();if("serviceWorker"in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
+})();
+</script>
+</body></html>

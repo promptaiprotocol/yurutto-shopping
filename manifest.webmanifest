@@ -1,0 +1,24 @@
+{
+  "name": "ゆるっと買い物",
+  "short_name": "ゆるっと買い物",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f8efe4",
+  "theme_color": "#f8efe4",
+  "description": "献立の買い出しをラクにする、ゆるっと買い物リスト。",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
